@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT: Auth.Api/Auth.Api.csproj
+    container_name: englishup-api
+    ports:
+      - "5000:5000"
+    # environment:
+    #   - ConnectionStrings__DefaultConnection=Host=localhost;Port=5432;Username=postgres;Password=bekzod28072009;Database=EnglishUp;
+    #   - Jwt__Issuer=EnglishUp
+    #   - Jwt__Audience=EnglishUpUsers
+    #   - Jwt__Key=3249f3f0-8s1e-4ebb-a8ef-1e40b0e90035
+    depends_on:
+      - db
+    # healthcheck:
+    #   test: ["CMD", "wget", "-qO-", "http://localhost:5000/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s
+
+  db:
+    image: postgres:15
+    container_name: englishup_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bekzod28072009
+      POSTGRES_DB: englishup
+    # ports:
+    #   - "5432:5432"
+    volumes:
+      - postgres_data_englishup:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_englishup:

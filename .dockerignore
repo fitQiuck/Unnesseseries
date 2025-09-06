@@ -1,0 +1,13 @@
+bin/
+obj/
+*.user
+*.suo
+*.log
+.vs/
+.idea/
+.git/
+.gitignore
+Dockerfile
+docker-compose*
+**/node_modules/
+*.md
