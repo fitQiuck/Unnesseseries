@@ -19,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ----------------- Logging ------------------
 builder.Host.UseSerilog((ctx, services, config) =>
 {
-    config.ReadFrom.Configuration(ctx.Configuration)
+    config.ReadFrom.Configuration(ctx.Configuration) 
           .Enrich.FromLogContext()
           .WriteTo.Console();
 });
